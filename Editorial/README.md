@@ -1,10 +1,9 @@
 ## <font>**CITRC 期末競賽題解**</font>
-1/
 
 ----
 
-- 基礎組：$A,C,D,E,G,H,I,J$
-- 進階組：$B,F$
+- 基礎組： $A,C,D,E,G,H,I,J$
+- 進階組： $B,F$
 
 ----
 
@@ -28,7 +27,7 @@ $D<<E<C=G<A<H<J<I<F<<B$
 - XXXXX當然是CITRC
 - `\` 要加跳脫字元
 - 最後記得換行
-```cpp=
+```cpp
 cout << "Yes, I love CITRC so much.(\\\\\\>.<\\\\\\)\n"
 ```
 
@@ -43,7 +42,7 @@ $100$ 分的方法是輸出 $(99.0,100.0)$ 區間的小數
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
@@ -89,21 +88,21 @@ int main() {
 ----
 
 定義 $K[i],B[i],Y[i]$ 為以 $i$ 為根節點所需最少的放置數
-$K,B,Y$是討論此節點是不同人的答案
-而已知$K,B$會互相影響所以不能視為其他可能
-而$Y$可以視情況當作$B$或$K$，因此就可以得到轉移式
+$K,B,Y$ 是討論此節點是不同人的答案
+而已知 $K,B$ 會互相影響所以不能視為其他可能
+而 $Y$ 可以視情況當作 $B$ 或 $K$ ，因此就可以得到轉移式
 
 ----
 
-定義集合 $S_i$ 為 $i$ 的所有子節點
-$K[i] = \sum_{j\in S_i}min(K[j],\ B[j]+1,\ Y[j])$
-$B[i] = \sum_{j\in S_i}min(K[j]+1,\ B[j],\ Y[j])$
+定義集合 $S_i$ 為 $i$ 的所有子節點\
+$K[i] = \sum_{j\in S_i}min(K[j],\ B[j]+1,\ Y[j])$\
+$B[i] = \sum_{j\in S_i}min(K[j]+1,\ B[j],\ Y[j])$\
 $Y[i] = \sum_{j\in S_i}min(K[j]+1,\ B[j]+1,\ Y[j])$
 
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 const int INF = 1e18;
 void dfs(int cur, int from) {
     for(auto &nxt : g[cur]) {
@@ -140,15 +139,15 @@ void dfs(int cur, int from) {
 
 ----
 
-就找出數字最大的就是最電的那個
-然後就把數字最大的那個名字輸出就好
-這題主要只是要考在比較三個數字的時候
+就找出數字最大的就是最電的那個\
+然後就把數字最大的那個名字輸出就好\
+這題主要只是要考在比較三個數字的時候\
 不能寫 $a > b > c$ 這種寫法
 
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 string nameA, nameB, nameC;
 int a,b,c;
 cin >> nameA >> a;
@@ -162,7 +161,7 @@ if(c > a && c > b) cout << nameC << '\n';
 ----
 
 不覺得寫很多 if 很麻煩嗎
-```cpp=
+```cpp
 pair<int,string> a,b,c;
 cin >> a.second >> a.first;
 cin >> b.second >> b.first;
@@ -190,27 +189,27 @@ cout << max({a,b,c}).second << '\n';
 
 ----
 
-這題根本就沒有難度
-之前強調過很多次數字太大要開long long了
+這題根本就沒有難度\
+之前強調過很多次數字太大要開long long了\
 甚至你把之前題解的程式碼照著貼上就有 $100$ 分了
 
 ----
 
 ### Subtask 1. $0\leq A,B \leq 10^6$
-`int` 範圍是 $-2^{32}\leq int\leq 2^{32}-1$
+`int` 範圍是 $-2^{32}\leq int\leq 2^{32}-1$ \
 $2^{32}$ 大概是 $2\times 10^9$
 
 ----
 
 ### Subtask 2. $0\leq A,B \leq 10^{15}$
-把 `int` 改成 `long long` 就好了
-範圍：$-2^{64}\leq long long\leq 2^{64}-1$
+把 `int` 改成 `long long` 就好了\
+範圍： $-2^{64}\leq long long\leq 2^{64}-1$ \
 大概比 $10^{18}$ 次方再大一點
 
 ----
 
 <font color="#00DB00">***Accepted Solution (100/100)***</font>
-```cpp=
+```cpp
 long long a,b;
 cin >> a >> b;
 cout << a+b << '\n';
@@ -219,13 +218,13 @@ cout << a+b << '\n';
 ----
 
 ### Bonus : $10^{24}\leq A,B\leq 10^{10^6}$
-數字連 `long long` 都超過了，沒辦法紀錄
+數字連 `long long` 都超過了，沒辦法紀錄\
 使用陣列去存每一個數字，同位數再相加進位就好
 
 ----
 
 <font color=orange> ***Bonus Solution(160/160)*** </font>
-```cpp=
+```cpp
 string a,b;
 cin >> a >> b;
 int A[1000005],B[1000005],C[1000005];
@@ -262,13 +261,13 @@ for(int i=start;i>=0;i--) cout << C[i];
 
 ----
 
-就跟 hello, world 沒兩樣
+就跟 hello, world 沒兩樣\
 題目說要幹嘛就幹嘛，注意一下空格就好了
 
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 string a,b;
 cin >> a >> b;
 cout << a << ":Devote your " << b << "!\n";
@@ -295,19 +294,19 @@ cout << a << ":Devote your " << b << "!\n";
 
 ----
 
-很有趣的是這是2024TRML思考賽的題目
+很有趣的是這是2024TRML思考賽的題目\
 只是被我魔改了題目敘述
 
 ----
 
 ### Subtask 1: $1\leq n\leq 20$
-數字這麼小就窮舉就好了啊
+數字這麼小就窮舉就好了啊\
 你甚至叫電腦幫你窮舉還不用自己窮舉
 
 ----
 
 <font color='#46A3FF'> ***Subtask1 Solution(55/100)***</font>
-```cpp=
+```cpp
 const int mod = 1e9+7;
 int n, ans = 0;
 cin >> n;
@@ -330,22 +329,22 @@ cout << ans << '\n';
 
 ----
 
-可以知道每天有兩種狀態，要或不要
-所以轉移式也很簡單
-定義 $ch[i]$ 為前 $i$ 天中第 $i$ 天要取的方法數
+可以知道每天有兩種狀態，要或不要\
+所以轉移式也很簡單\
+定義 $ch[i]$ 為前 $i$ 天中第 $i$ 天要取的方法數\
 反之， $nch[i]$ 為前 $i$ 天中第 $i$ 天不取方法數
 
 ----
 
-顯而易見，考慮前後天關係而已
-$ch[i] = nch[i-1]$
-$nch[i] = ch[i] + nch[i-1]$
+顯而易見，考慮前後天關係而已\
+$ch[i] = nch[i-1]$ \
+$nch[i] = ch[i] + nch[i-1]$ \
 實作的時候記得邊加邊 $mod$ 以免溢位
 
 ----
 
 <font color="#00DB00">***Accepted Solution (100/100)***</font>
-```cpp=
+```cpp
 const int mod = 1e9+7;
 int n;
 cin >> n;
@@ -359,18 +358,18 @@ cout << (ch[n] + notch[n]) % mod << '\n';
 
 ----
 
-但是其實這題還有另一個思考方式
-定義 $dp[i]$ 為前 $i$ 天的方法數
-方法數有第$i$天取和不取兩種
-若第 $i$ 天要取，則第 $i-1$ 必不取，為$dp[i-2]$
-若第 $i$ 天不取，則第 $i-1$ 可以取，為$dp[i-1]$
-因此 $dp[i] = dp[i-1] + dp[i-2]$
+但是其實這題還有另一個思考方式\
+定義 $dp[i]$ 為前 $i$ 天的方法數\
+方法數有第 $i$ 天取和不取兩種\
+若第 $i$ 天要取，則第 $i-1$ 必不取，為 $dp[i-2]$ \
+若第 $i$ 天不取，則第 $i-1$ 可以取，為 $dp[i-1]$ \
+因此 $dp[i] = dp[i-1] + dp[i-2]$ \
 這不就是費氏數列嗎ouob
 
 ----
 
 <font color="#00DB00">***Accepted Solution (100/100)***</font>
-```cpp=
+```cpp
 const int mod = 1e9+7;
 int n;
 cin >> n;
@@ -393,15 +392,15 @@ $ans = \frac{1}{\sqrt 5}[(\frac{1+\sqrt{5}}{2})^{n+2}-(\frac{1-\sqrt{5}}{2})^{n+
 
 ----
 
-很明顯不可能
-都說了是費氏數列
-那就用矩陣快速冪ouob
-$\begin{bmatrix} 1 & 1 \\1 & 0 \\\end{bmatrix}^{n+2}$
+很明顯不可能\
+都說了是費氏數列\
+那就用矩陣快速冪ouob\
+ $\begin{bmatrix} 1 & 1 \\1 & 0 \\\end{bmatrix}^{n+2}$
 
 ----
 
 <font color="#00DB00">***Full Solution (160/160)***</font>
-```cpp=
+```cpp
 const int mod = 1e9+7;
 struct matrix {int a = 0,b = 0,c = 0,d = 0;};
 matrix cross(const matrix x,const matrix y){
@@ -447,7 +446,7 @@ int main() {
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 char a,b,c,d;
 cin >> a >> b >> c >> d;
 if(a == c && b == d) cout << "What\n";
@@ -469,13 +468,13 @@ else cout << "Nothing Happened\n";
 
 ----
 
-使用for迴圈或while迴圈跑規定的次數，就這麼簡單
+使用for迴圈或while迴圈跑規定的次數，就這麼簡單\
 比較特別的是這題是 $Sh1ng$ 出的
 
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 int n,times;
 string who;
 cin >> n;
@@ -507,7 +506,7 @@ for(int i=0;i<n;i++) {
 
 ----
 
-簡化問題就是給予字串 $S_1,S_2$
+簡化問題就是給予字串 $S_1,S_2$ \
 詢問 $S_2$ 是否為 $S_1$ 的子字串
 
 ----
@@ -518,7 +517,7 @@ for(int i=0;i<n;i++) {
 ----
 
 <font color='#46A3FF'> ***Subtask1 Solution(50/100)***</font>
-```cpp=
+```cpp
 string a;
 char b;
 cin >> a >> b;
@@ -534,14 +533,14 @@ cout << "real\n";
 ----
 
 ### Subtask 2: $|S_2|\leq|S_1|\leq 1000$
-1000非常小，直接檢查所有的可能就好了
-簡單來說就是試試看每個字為開頭的可能
+1000非常小，直接檢查所有的可能就好了\
+簡單來說就是試試看每個字為開頭的可能\
 時間複雜度 $O(|S_1|\times |S_2|)$
 
 ----
 
 <font color="#00DB00">***Accepted Solution (100/100)***</font>
-```cpp=
+```cpp
 string a,b;
 cin >> a >> b;
 // i 為可能的比對, j 為可能相同的開頭位置
@@ -561,16 +560,16 @@ cout << "real\n";
 ----
 
 ### Bonus : $|S_2|\leq |S_1|\leq 2\times 10^5$
-考慮worst case,當$|S_1|,|S_2|$都很大的時候
-一秒是不夠跑完的，因此要優化
-有個叫做 KMP 的演算法
-可以在 $O(|S_1|+|S_2|)$的複雜度內解出
+考慮worst case,當 $|S_1|,|S_2|$ 都很大的時候\
+一秒是不夠跑完的，因此要優化\
+有個叫做 KMP 的演算法\
+可以在 $O(|S_1|+|S_2|)$ 的複雜度內解出\
 有興趣可以自己 Google
 
 ----
 
 <font color="#00DB00">***Full Solution (200/200)***</font>
-```cpp=
+```cpp
 bool KMP_Algorithm(string &haystack, string &needle) {
     int lps[needle.size()];
     lps[0] = 0;
@@ -610,13 +609,13 @@ bool KMP_Algorithm(string &haystack, string &needle) {
 
 ----
 
-看似沒難度，實則沒難度
+看似沒難度，實則沒難度\
 把數列存起來之後反過來輸出就好
 
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 int n;
 cin >> n;
 int arr[n];
@@ -627,7 +626,7 @@ for(int i=n-1;i>=0;i--) cout<<arr[i]<<' ';
 ----
 
 還有黑魔法 reverse
-```cpp=
+```cpp
 int n;
 cin >> n;
 vector<int> f(n);
@@ -638,7 +637,7 @@ for(int &i : f) cout << i << ' ';
 
 ---
 
-### K. 不時以培訓為由翹課的鄰座$Zhenzhe$同學
+### K. 不時以培訓為由翹課的鄰座 $Zhenzhe$ 同學
 <font color='AAAAAAA'> ***Skip Class*** </font>
 
 ----
@@ -650,13 +649,13 @@ for(int &i : f) cout << i << ' ';
 
 ----
 
-用 map 紀錄什麼課共出現幾次
+用 map 紀錄什麼課共出現幾次\
 最後再檢查哪個最多和總和是多少
 
 ----
 
 <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
@@ -688,7 +687,7 @@ int main() {
 
 ---
 
-### L. 大盤子法師$Sh1ng$
+### L. 大盤子法師 $Sh1ng$
 <font color='AAAAAA'> ***Plates Master*** </font>
 
 ----
@@ -706,7 +705,7 @@ int main() {
 ----
 
 ### Subtask 2. $n\leq 10, P_i\leq 10^{18}$
-既然要判斷是不是$11$的倍數，那就對$11$取餘數就好
+既然要判斷是不是 $11$ 的倍數，那就對 $11$ 取餘數就好
 
 ----
 
@@ -716,7 +715,7 @@ int main() {
 ----
 
 // <font color="#00DB00">***Full Solution (100/100)***</font>
-```cpp=
+```cpp
 if(n == 0) {cout<<"Happy Birthday!\n";return 0;}
 for(int i=0;i<n;i++) {
     string s;
