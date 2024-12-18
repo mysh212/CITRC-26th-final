@@ -733,7 +733,99 @@ for(int i=0;i<n;i++) {
 ---
 
 ### M. 競程有奇樹，剖分發華茲
-<font></font>
+<font color='AAAAAA'> ***Tree*** </font>
+
+----
+
+- 考點： 國文能力
+- 難度： -10 / 10
+- 首殺： 
+- 提交次數：
+
+----
+
+好像是需要圖論知識的題目？
+好像很難？看到直接跳過？
+
+----
+
+題目問說一棵樹最多可以被分成幾顆子樹
+***Note***有寫一個點也可以當作一棵樹
+因此 $n$ 個點最多就可以被分成 $n$ 棵子樹
+
+----
+
+因此輸入 $n$ 再輸出 $n$ 
+就輕鬆拿到 $200$ 分
+
+----
+
+<font color="#00DB00">***Full Solution (200/200)***</font>
+``` cpp
+std::cin >> n;
+std::cout << n << '\n';
+```
+
+---
+
+### N. 原潮啟動
+<font color='AAAAAA'> ***Genshin Waves*** </font>
+
+----
+
+- 考點： for迴圈, 數學
+- 難度： 6 / 10
+- 首殺： 
+- 提交次數：
+
+----
+
+$\begin{cases}
+A + B = S \\
+6480A+980B = N\\
+\end{cases}$
+
+----
+
+如何解聯立方程式？
+- 矩陣
+- 加減消去法
+- 克拉馬公式解
+
+----
+
+但是有可能 $(A,B)$ 沒有整數解
+要判斷其實也滿麻煩的
+
+----
+
+可以直接窮舉 $A$ 是多少
+那 $B$ 就是 $S-A$ 
+再檢查第二條式子是否成立
+
+----
+
+<font color="#00DB00">***Full Solution (100/100)***</font>
+```cpp
+#include <bits/stdc++.h>
+#define int long long
+using namespace std;
+signed main() {
+    int s,n;
+    cin >> s >> n;
+    // A + B = S
+    // 6480 A + 980 B = N
+    for(int A=0;A<=n;A++) {
+        int B = s-A;
+        int get = 6480 * A + 980 * B;
+        if(get == n)
+            return cout<<A<<' '<<B,0;
+    }
+    cout << "-1 -1\n";
+}
+```
+
+---
 
 ### O. 社點
 <font color = '#AAAAAA'> ***Dessert*** </font>
