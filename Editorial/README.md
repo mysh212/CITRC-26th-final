@@ -741,7 +741,7 @@ for(int i=0;i<n;i++) {
 ---
 
 - 考點： `two-pointer` `prefix-sum` `set` `binary_search`
-- 難度： 5 / 10
+- 難度： 7 / 10
 - 首殺： 
 - 提交次數：
 
@@ -751,17 +751,14 @@ for(int i=0;i<n;i++) {
 
 唬爛用， $O(n^7)$ 都會過
 
-:::spoiler ***subtask1***
-我不知道你怎麼寫出 $O(n^7)$ 解的
-:::
+~~我不知道你怎麼寫出 $O(n^7)$ 解的~~
 
 #### ***subtask2***
 
 暴力解， $O(n^3)$ 都會過
 
 
-:::spoiler ***subtask2***
-```cpp=
+```cpp
 vector<int>f(n);
 
 int last = 0;
@@ -779,7 +776,6 @@ for(int i = 0;i<n;i++) {
 
 return ans;
 ```
-:::
 
 #### ***subtask3***
 
@@ -787,8 +783,7 @@ return ans;
 
 `聰明點的暴力解` = `暴力解` + ***prefix sum***
 
-:::spoiler ***subtask3***
-```cpp=
+```cpp
 vector<int>f(n);
 
 int last = 0;
@@ -806,15 +801,13 @@ for(int i = 0;i<n;i++) {
 
 return ans;
 ```
-:::
 
 #### ***subtask4***
 
 砸 `multiset` 或 `map` 就可以過了
 時間複雜度 $O(n\ log_2^n)$
 
-:::spoiler ***subtask4***
-```cpp=
+```cpp
 vector<int>f(n);
 
 int last = 0;
@@ -830,7 +823,6 @@ for(int &i : f) {
 
 return ans;
 ```
-:::
 
 #### ***subtask5***
 
@@ -838,7 +830,6 @@ return ans;
 
 由於每個元素分別會被 **左指針** 和 **右指針** 穿過一次，因此時間複雜度為 $O(n)$
 
-:::spoiler ***code***
 
 ```cpp
 
@@ -858,9 +849,6 @@ while(l != n - 1) {
     if(sig == k) ans++;
 }
 ```
-
-
-:::
 
 #### **證明**
 
