@@ -734,3 +734,136 @@ for(int i=0;i<n;i++) {
 
 ### M. 競程有奇樹，剖分發華茲
 <font></font>
+
+### O. 社點
+<font color = '#AAAAAA'> ***Dessert*** </font>
+
+---
+
+- 考點： `two-pointer` `prefix-sum` `set` `binary_search`
+- 難度： 5 / 10
+- 首殺： 
+- 提交次數：
+
+---
+
+#### ***subtask1***
+
+唬爛用， $O(n^7)$ 都會過
+
+:::spoiler ***subtask1***
+我不知道你怎麼寫出 $O(n^7)$ 解的
+:::
+
+#### ***subtask2***
+
+暴力解， $O(n^3)$ 都會過
+
+
+:::spoiler ***subtask2***
+```cpp=
+vector<int>f(n);
+
+int last = 0;
+for(int &i : f) cin>>i, i = last += i;
+
+#define sig(i,j) accumulate(f.begin() + i, f.begin() + r + 1, 0) // 其實就是三層迴圈
+
+int ans = 0;
+
+for(int i = 0;i<n;i++) {
+    for(int j = i;j<n;j++) {
+        if(sig(i,j) == j) ans++;
+    }
+}
+
+return ans;
+```
+:::
+
+#### ***subtask3***
+
+聰明點的暴力解， $O(n^2)$ 都會過
+
+`聰明點的暴力解` = `暴力解` + ***prefix sum***
+
+:::spoiler ***subtask3***
+```cpp=
+vector<int>f(n);
+
+int last = 0;
+for(int &i : f) cin>>i, i = last += i;
+
+#define sig(i,j) (f.at(j) - (i == 0 ? 0 : f.at(i - 1)))
+
+int ans = 0;
+
+for(int i = 0;i<n;i++) {
+    for(int j = i;j<n;j++) {
+        if(sig(i,j) == j) ans++;
+    }
+}
+
+return ans;
+```
+:::
+
+#### ***subtask4***
+
+砸 `multiset` 或 `map` 就可以過了
+時間複雜度 $O(n\ log_2^n)$
+
+:::spoiler ***subtask4***
+```cpp=
+vector<int>f(n);
+
+int last = 0;
+for(int &i : f) cin>>i, i = last += i;
+
+int ans = 0;
+
+multiset<int>s({0});
+for(int &i : f) {
+    ans += s.count(i - k);
+    s.insert(i);
+}
+
+return ans;
+```
+:::
+
+#### ***subtask5***
+
+用 ***two pointer*** ，維護 **左指針** 和 **右指針** ，每次將 **左指針** 往右移動一格，接著移動 **右指針** 來讓這個區間中的和 **不大於 $k$** ，最後只要和是 $k$ 的話就加一。
+
+由於每個元素分別會被 **左指針** 和 **右指針** 穿過一次，因此時間複雜度為 $O(n)$
+
+:::spoiler ***code***
+
+```cpp
+
+vector<int>f(n);
+
+int last = 0;
+for(int &i : f) cin>>i;
+
+int sig = 0;
+int ans = 0;
+int l,r;l = r = -1;
+
+while(l != n - 1) {
+    if(l != -1) sig -= f.at(l++);
+    else l++;
+    while(r != n - 1 && sig + f.at(r + 1) <= k) sig += f.at(++r);
+    if(sig == k) ans++;
+}
+```
+
+
+:::
+
+#### **證明**
+
+為什麼能這樣解呢，這題跟 ***CJ*** 第一題很不一樣的地方在於，這題保證每個元素都是正的，因此我們可以推得當左界固定的時候，使和為 $k$ 的右界只會有至多一個，證明應該滿容易的，就留給各位證了ouob
+
+若不保證每個元素都是正的，則最佳解為 ***subtask4***
